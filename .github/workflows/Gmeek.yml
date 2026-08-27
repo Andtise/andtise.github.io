@@ -2,6 +2,12 @@ name: build Gmeek
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'config.json'
+      - 'docs/cv.html'
+      - '.github/workflows/Gmeek.yml'
   issues:
     types: [opened, edited]
   schedule:
@@ -11,7 +17,7 @@ jobs:
   build:
     name: Generate blog
     runs-on: ubuntu-24.04
-    if: ${{ github.event.repository.owner.id == github.event.sender.id || github.event_name == 'schedule' }}
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || github.event.repository.owner.id == github.event.sender.id }}
     permissions: write-all
     steps:
       - name: Checkout
@@ -20,6 +26,9 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
+
+      - name: Preserve custom CV
+        run: cp docs/cv.html /tmp/cv.html
 
       - name: Get config.json
         run: |
@@ -51,6 +60,7 @@ jobs:
           cp -r ./* /opt/Gmeek/
           cd /opt/Gmeek/
           python Gmeek.py ${{ secrets.GITHUB_TOKEN }} ${{ github.repository }} --issue_number '${{ github.event.issue.number }}'
+          cp /tmp/cv.html /opt/Gmeek/docs/cv.html
           cp -a /opt/Gmeek/docs ${{ github.workspace }} 
           cp -a /opt/Gmeek/backup ${{ github.workspace }} 
           cp /opt/Gmeek/blogBase.json ${{ github.workspace }} 
