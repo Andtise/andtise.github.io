@@ -1,6 +1,11 @@
 {
-    "title":"我的碎碎念",
-    "subTitle":"记录当下的想法",
-    "avatarUrl":"https://github.githubassets.com/favicons/favicon.svg",
+    "title":"Fengyu Fu | Academic Homepage",
+    "displayTitle":"Fengyu Fu",
+    "subTitle":"Dryland ecology · ecological restoration · ecosystem resilience",
+    "avatarUrl":"https://avatars.githubusercontent.com/u/94891243?v=4",
+    "homeUrl":"https://fengyufu.github.io/andtise.github.io",
+    "email":"fengyufu@mail.bnu.edu.cn",
+    "iconList":{"CV":"M2 1.5h7l5 5v8H2v-13zm7 1.4V7h4.1L9 2.9zM4 9h8v1H4V9zm0 2.5h8v1H4v-1z"},
+    "exlink":{"CV":"https://fengyufu.github.io/andtise.github.io/cv.html"},
     "GMEEK_VERSION":"last"
 }
